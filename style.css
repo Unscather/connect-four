@@ -1,0 +1,44 @@
+body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+#play-area {
+    width: 100%;
+    height: 100%;
+}
+
+#board {
+    width: 1000px;
+    height: 700px;
+    background-color: #73e1b8;
+    margin: auto;
+}
+
+.board-piece {
+    background-color: lightgray;
+    position: absolute;
+    border-radius: 100% 110%;
+}
+
+.player-piece-one {
+    background-color: red;
+}
+
+.player-piece-two {
+    background-color: blue;
+}
+
+.player-piece {
+    position: absolute;
+    border-radius: 100% 110%;
+    z-index: 5;
+}
+
+.game-button {
+    width: 5%;
+    left: 47.5%;
+    position: relative;
+    margin-top: 15px;
+}
