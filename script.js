@@ -16,7 +16,7 @@ const boardPositionTop = 25;
 const holeHeight = board.offsetHeight / rowSize;
 const holeWidth = board.offsetWidth / columnSize;
 
-let currentPlayer = PLAYER.ONE;
+let currentPlayer = PLAYER.TWO;
 let isGameActive = false;
 let currentColumnHover = -1;
 
@@ -95,10 +95,25 @@ function handleHover(event) {
     }
 }
 
+function changePlayer() {
+    const playerTextElement = document.getElementById('current-player');
+
+    if (currentPlayer === PLAYER.ONE) {
+        currentPlayer = PLAYER.TWO;
+        playerTextElement.innerText = 'PLAYER TWO';
+        playerTextElement.className = 'player-two';
+    } else {
+        currentPlayer = PLAYER.ONE;
+        playerTextElement.innerText = 'PLAYER ONE';
+        playerTextElement.className = 'player-one';
+    }
+
+}
+
 function dropPiece() {
     if (isGameActive && currentColumnHover >= 0 && pieces[currentColumnHover].length < columnSize - 1) {
         drawDroppedPiece(currentColumnHover);
-        currentPlayer = currentPlayer === PLAYER.ONE ? PLAYER.TWO : PLAYER.ONE;
+        changePlayer(); 
         let originalColumnHover = currentColumnHover;
 
         // Simulate player moving out of area to force color change
@@ -160,12 +175,16 @@ function checkForWinner() {
 
 function startGame() {
     initializeGame();
+    changePlayer();
     isGameActive = true;
 }
 
 function endGame() {
     handleHover({x : 0});
     isGameActive = false;
+    currentPlayer = PLAYER.TWO;
+    const playerTextElement = document.getElementById('current-player');
+    playerTextElement.innerText = '';
 }
 
 initializeGame();

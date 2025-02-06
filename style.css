@@ -42,3 +42,18 @@ body {
     position: relative;
     margin-top: 15px;
 }
+
+#current-player {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 24px;
+}
+
+.player-one {
+    color: red;
+}
+
+.player-two {
+    color: blue;
+}
