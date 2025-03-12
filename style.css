@@ -57,3 +57,8 @@ body {
 .player-two {
     color: blue;
 }
+
+.center-area {
+    display: flex;
+    justify-content: center;
+}

@@ -1,4 +1,4 @@
-import { PLAYER, boardPositionLeft, holeHeight, holeWidth, gameProperties, updateProperty } from '../data/game-data.js';
+import { PLAYER, DIFFICULTY, boardPositionLeft, holeHeight, holeWidth, gameProperties, updateProperty } from '../data/game-data.js';
 import { drawBoardHoles, createPiece, drawDroppedPiece } from './render.js';
 import { playCPUTurn } from './cpu-logic.js';
 
@@ -131,7 +131,15 @@ export function checkForWinner() {
     return piecesPlayed === gameProperties.columnSize * gameProperties.rowSize ? 2 : -1; // no winner
 }
 
+function setDifficulty() {
+    const difficultyElement = document.getElementById('difficulty-dropdown');
+    const difficultyString = difficultyElement.value;
+    updateProperty('cpuDifficulty', DIFFICULTY[difficultyString]);
+    difficultyElement.setAttribute('disabled', 'disabled');
+}
+
 export function startGame() {
+    setDifficulty();
     initializeGame();
     changePlayer();
     updateProperty('isGameActive', true);
@@ -143,6 +151,8 @@ export function endGame() {
     updateProperty('currentPlayer', PLAYER.TWO);
     const playerTextElement = document.getElementById('current-player');
     playerTextElement.innerText = '';
+    const difficultyElement = document.getElementById('difficulty-dropdown');
+    difficultyElement.removeAttribute('disabled');
 }
 
 window.handleHover = handleHover;
